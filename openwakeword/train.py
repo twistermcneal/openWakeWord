@@ -667,7 +667,9 @@ if __name__ == '__main__':
         n_current_samples = len(os.listdir(positive_train_output_dir))
         if n_current_samples <= 0.95*config["n_samples"]:
             generate_samples(
-                text=config["target_phrase"], max_samples=config["n_samples"]-n_current_samples,
+                text=config["target_phrase"],
+                model = 'piper-sample-generator/models/' + config["target_lang"],
+                max_samples=config["n_samples"]-n_current_samples,
                 batch_size=config["tts_batch_size"],
                 noise_scales=[0.98], noise_scale_ws=[0.98], length_scales=[0.75, 1.0, 1.25],
                 output_dir=positive_train_output_dir, auto_reduce_batch_size=True,
